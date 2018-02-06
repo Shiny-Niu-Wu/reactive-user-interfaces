@@ -1,0 +1,58 @@
+.Article{
+  display: flex;
+  flex-direction: row;
+  margin-top: 0;
+}
+
+.Article time {
+  flex: 1;
+  font-family: sans-serif;
+  color: #999999;
+  font-size: 12px;
+  font-weight: bold;
+  padding-top: 12px;
+}
+
+.Content{
+  flex: 3;
+  flex-direction: column;
+}
+
+.Article h2{
+  font-size: 24px;
+  font-weight: 400;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.Article h2:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.Article .subtitle{
+  font-size: 12px;
+  font-family: sans-serif;
+  margin-bottom: 2px;
+}
+
+.Article .description{
+  line-height: 23px;
+}
+
+.writer{
+  color: #999999;
+  font-family: sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.Article figure{
+  flex: 2;
+  text-align: right;
+  margin-right: 0;
+}
+
+.Article figure img{
+  width: 100%;
+}
