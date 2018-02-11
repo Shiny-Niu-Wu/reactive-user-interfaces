@@ -1,0 +1,14 @@
+.ResultBox{
+  background-color: #EDEDED;
+  width: 640px;
+  height: 135px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 135px;
+  border-radius: 10px;
+}
+
+.result{
+  font-size: 35px;
+  color: #595959;
+}

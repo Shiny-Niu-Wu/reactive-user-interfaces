@@ -1,0 +1,11 @@
+.App {
+  margin: 30px;
+}
+
+.ButtonRow {
+  width: 640px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 35px;
+}
