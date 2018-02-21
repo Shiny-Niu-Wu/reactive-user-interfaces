@@ -13,8 +13,12 @@ class Button extends Component {
   }
 
   render() {
+    let classes = 'Button';
+    if (this.props.active === this.props.name){
+      classes += ' active';
+    }
     return (
-      <button onClick={this.clicked} className="Button">
+      <button onClick={this.clicked} className= {classes}>
         {this.props.name}
       </button>
     );

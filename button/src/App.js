@@ -14,27 +14,28 @@ class App extends Component {
 
   buttonClicked(name){
     this.setState({
-      result: name
+      result: name,
+      active: name
     });
   }
 
   render() {
+    const buttons = ['Button 1', 'Button 2', 'Button 3'];
+    const layout = buttons.map((name,i) => {
+      return(
+        <Button
+          name={name}
+          onClick= {this.buttonClicked}
+          active={this.state.active}
+          key={i}
+        />
+      );
+    })
+
     return (
       <div className="App">
 
-        <div className="ButtonRow">
-          <Button onClick= {this.buttonClicked}
-            name= "First Button"
-          />
-
-          <Button onClick= {this.buttonClicked}
-            name= "Second Button"
-          />
-
-          <Button onClick= {this.buttonClicked}
-            name= "Third Button"
-          />
-        </div>
+        <div className="ButtonRow">{layout}</div>
 
         <ResultBox
           result= {this.state.result}

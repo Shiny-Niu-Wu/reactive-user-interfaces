@@ -5,14 +5,20 @@
   border: 1.5px solid #349191;
   width: 200px;
   height: 60px;
-}
-
-.Button:focus{
-  color: white;
-  background-color: #00ADAD;
   outline: 0;
 }
 
+/* .Button:focus{
+  color: white;
+  background-color: #00ADAD;
+  outline: 0;
+}*/
+
 .Button:hover{
   cursor: pointer;
+}
+
+.Button.active{
+  color: white;
+  background-color: #00ADAD;
 }
