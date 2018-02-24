@@ -1,0 +1,23 @@
+.Input{
+}
+
+.inputBox{
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 1px solid #D9D9D9;
+  width: 330px;
+  margin-top: 5px;
+  margin-bottom: 30px;
+  margin-right: 25px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 23px;
+  color: #5B5B5B;
+}
+
+.label{
+  margin: 0;
+  color: #9E9E9E;
+  font-weight: lighter;
+  font-size: 14px;
+}
