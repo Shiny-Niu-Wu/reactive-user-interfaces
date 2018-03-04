@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Profile.css';
+import './Favorite.css';
 import dropdownIcon from './pics/dropdown.png';
 import dropupIcon from './pics/dropup.png';
 import contactPic from './pics/contact.png';
