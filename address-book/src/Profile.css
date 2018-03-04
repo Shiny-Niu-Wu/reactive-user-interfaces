@@ -1,3 +1,19 @@
 .Profile{
-  
+  padding: 10px;
+}
+
+.profilePic{
+  width: 50px;
+  height: 50px;
+  flex: 0 0 50px;
+  border-radius: 50%;
+  border: 5px solid blue;
+}
+
+.collapsePro{
+  display: none;
+}
+
+.collapsePro.in{
+  display: block;
 }

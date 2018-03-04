@@ -1,3 +1,19 @@
 .List{
-  
+
+}
+
+.category{
+  margin: 0;
+}
+
+.dropImage{
+  width: 5%;
+}
+
+.collapseAll{
+  display: none;
+}
+
+.collapseAll.in{
+  display: block;
 }

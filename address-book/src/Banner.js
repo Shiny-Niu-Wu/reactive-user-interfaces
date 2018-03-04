@@ -5,7 +5,7 @@ class Banner extends Component {
   render() {
     return (
       <div className="Banner">
-        This is the Banner
+        <p className="title">APPNAME</p>
       </div>
     );
   }

@@ -4,11 +4,11 @@ import dropdownIcon from './pics/dropdown.png';
 import dropupIcon from './pics/dropup.png';
 import contactPic from './pics/contact.png';
 
-class Profile extends Component {
+class Favorite extends Component {
   constructor(props){
     super(props);
     this.state={
-      open: true
+      open: false
     };
     this.toggle=this.toggle.bind(this);
   }
@@ -21,26 +21,20 @@ class Profile extends Component {
 
   render() {
     let imgSrc = dropdownIcon;
-    let collapsePro = "collapsePro";
+    let collapseFav = "collapsePro";
     if (this.state.open===true){
-      collapsePro += ' in';
+      collapseFav += ' in';
       imgSrc = dropupIcon;
     }
 
     return (
-      <div className="Profile">
-        <p className="category">Profile</p>
+      <div className="Favorite">
+        <p className="category">Favorites</p>
         <img src={imgSrc} className="dropImage" onClick={this.toggle}/>
-          <div className={collapsePro}>
-            <div className="listing">
-              <div className="firstName">Shiny</div>
-              <img src={contactPic} className="profilePic"/>
-              <div className="lastName">Wu</div>
-            </div>
-          </div>
+        <div className={collapseFav}>{this.props.listName}</div>
       </div>
     );
   }
 }
 
-export default Profile;
+export default Favorite;

@@ -1,0 +1,11 @@
+.Favorite{
+
+}
+
+.collapseFav{
+  display: none;
+}
+
+.collapseFav.in{
+  display: block;
+}
