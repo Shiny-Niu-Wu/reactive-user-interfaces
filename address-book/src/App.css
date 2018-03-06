@@ -40,3 +40,60 @@ hr{
   border-radius: 50%;
   border: 5px solid green;
 }
+
+.search{
+  background-color: grey;
+  width: 100%;
+  height: 10%;
+  opacity: 0.15;
+  position: fixed;
+  bottom: 0%;
+  text-align: center;
+}
+
+.searchPic{
+  width: 25%;
+  opacity: 1;
+  position: fixed;
+  right: 35%;
+  bottom: 0%;
+}
+
+.searchBarHide{
+  display: none;
+  width: 100%;
+}
+
+.searchBarShow{
+  display: block;
+  position: fixed;
+  left: 0%;
+  bottom: 30%;
+  animation-name: searchBoxExpand;
+  animation-duration: 0.5s;
+}
+
+@keyframes searchBoxExpand {
+    from{width: 0%;}
+    to{width: 100%;}
+}
+
+.scroll {
+  opacity: 0;
+  background-color: grey;
+  color: grey;
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  border-radius: 50%;
+}
+
+.goTop{
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
