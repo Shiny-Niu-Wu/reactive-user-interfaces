@@ -13,6 +13,8 @@ class App extends Component {
     super(props);
     this.state={
       search: " ",
+      sortByFirst: true,
+      sortBy: "First",
       searchBar: false,
       intervalid: 0,
       scrollStepInPx: "50",
@@ -22,6 +24,7 @@ class App extends Component {
     this.showSearchBar=this.showSearchBar.bind(this);
     this.scrollStep=this.scrollStep.bind(this);
     this.scrollToTop=this.scrollToTop.bind(this);
+    this.sortByName=this.sortByName.bind(this);
   }
 
   Search(e){
@@ -57,30 +60,49 @@ class App extends Component {
   //     }
   // }
 
+  sortByName(){
+    this.setState({
+      sortByFirst: !this.state.sortByFirst
+    });
+  }
+
   render() {
     const listNames = [
-      {first: "Bob", last: "Banana"},
-      {first: "Amy", last: "Banana"},
-      {first: "Dylan", last: "Banana"},
-      {first: "Tiger", last: "Banana"},
-      {first: "Papa", last: "Banana"},
-      {first: "Mama", last: "Banana"},
-      {first: "George", last: "Banana"},
-      {first: "Mary", last: "Banana"},
-      {first: "Sam", last: "Banana"},
-      {first: "Kiko", last: "Banana"},
+      {first: "Bob", last: "Penguin"},
+      {first: "Amy", last: "Bird"},
+      {first: "Dylan", last: "Fox"},
+      {first: "Tiger", last: "Tiger"},
+      {first: "Papa", last: "Elephant"},
+      {first: "Mama", last: "Dinosaur"},
+      {first: "George", last: "Sheep"},
+      {first: "Mary", last: "Hippo"},
+      {first: "Sam", last: "Cockroach"},
+      {first: "Kiko", last: "Human"},
     ];
 
     //default should be in alphabetical order
 
     let listCopy = listNames.slice();
 
+    if (this.state.sortByFirst===true) {
+      listCopy = listCopy.sort((firstA, firstB) =>
+        firstA.first > firstB.first,
+        this.state.sortBy = "Last"
+      );
+    } else if (this.state.sortByFirst===false) {
+      listCopy = listCopy.sort((lastA, lastB) =>
+        lastA.last > lastB.last,
+        this.state.sortBy = "First"
+      );
+    }
+
     if(this.state.search != " "){
       listCopy = listCopy.filter((name) => {
         const searching = this.state.search.toLowerCase();
         const firstName = name.first.toLowerCase();
         const lastName = name.last.toLowerCase();
-        return firstName.match(searching) || lastName.match(searching);
+        const fullName = firstName + " " + lastName;
+        return fullName.match(searching);
       });
     }
 
@@ -103,7 +125,10 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Banner />
+        <Banner
+          onClick={this.sortByName}
+          sortBy={this.state.sortBy}
+        />
         <Profile />
         <hr />
         <Favorite

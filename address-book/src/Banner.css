@@ -15,3 +15,34 @@
 .addIcon:active{
   opacity: 1;
 }
+
+.sideBarHide{
+  display: none;
+}
+
+.sideBarShow{
+  display: block;
+  position: fixed;
+  left: 0%;
+  top: 0%;
+  width: 40%;
+  height: 50%;
+  background-color: #ececec;
+  border-bottom-right-radius: 5%;
+  border-width: thick;
+  border-color: yellow;
+}
+
+.sideIcon{
+  position: fixed;
+  left: 3%;
+  top: 1%;
+  width: 10%;
+}
+
+.sort{
+  position: fixed;
+  left: 3%;
+  top: 10%;
+  width: 10%;
+}
