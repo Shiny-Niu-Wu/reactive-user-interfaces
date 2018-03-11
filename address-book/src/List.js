@@ -7,9 +7,14 @@ class List extends Component {
   constructor(props){
     super(props);
     this.state={
-      open: true
+      open: true,
+      show: false,
+      fav: false
     };
     this.toggle=this.toggle.bind(this);
+    this.showModal=this.showModal.bind(this);
+    this.closeModal=this.closeModal.bind(this);
+    this.addFav=this.addFav.bind(this);
   }
 
   toggle(){
@@ -18,19 +23,67 @@ class List extends Component {
     });
   }
 
+  showModal(){
+    this.setState({
+      show: true
+    });
+  }
+
+  closeModal(){
+    this.setState({
+      show: false
+    });
+  }
+
+  addFav(){
+    this.setState({
+      fav: !this.state.fav
+    });
+    this.props.addFav();
+  }
+
   render() {
     let imgSrc = dropdownIcon;
     let collapseAll = "collapseAll";
-    if (this.state.open===true){
+    if (this.props.mustShow || this.state.open===true){
       collapseAll += ' in';
       imgSrc = dropupIcon;
+    }
+
+    let modalClass = "hideModal";
+    if (this.state.show===true) {
+      modalClass = "showModal";
+    }
+
+    let star = "notFav";
+    let whiteStar = "blockStar";
+    let blackStar = "noneStar";
+    if (this.state.fav===true) {
+      star = "isFav";
+      whiteStar = "noneStar";
+      blackStar = "blockStar";
     }
 
     return (
       <div className="List">
           <p className="category">All</p>
           <img src={imgSrc} className="dropImage" onClick={this.toggle}/>
-          <div className={collapseAll}>{this.props.listName}</div>
+
+          <div className={modalClass}>
+            <div className="modal-content">
+              <span className="close" onClick={this.closeModal}>&times;</span>
+              <div className="contactInfo">
+                <div>{this.props.contactName}</div>
+                <div className={star} onClick={this.addFav}>
+                  <p className={whiteStar}>&#9734;</p>
+                  <p className={blackStar}>&#9733;</p>
+                </div>
+                <div>{this.props.contactInfo}</div>
+              </div>
+            </div>
+          </div>
+
+          <div className={collapseAll} onClick={this.showModal}>{this.props.listName}</div>
       </div>
     );
   }

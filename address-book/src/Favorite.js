@@ -22,14 +22,14 @@ class Favorite extends Component {
   render() {
     let imgSrc = dropdownIcon;
     let collapseFav = "collapsePro";
-    if (this.state.open===true){
+    if (this.props.mustShow || this.state.open===true){
       collapseFav += ' in';
       imgSrc = dropupIcon;
     }
 
     return (
       <div className="Favorite">
-        <p className="category">Favorites</p>
+        <p className="category">Best of Best</p>
         <img src={imgSrc} className="dropImage" onClick={this.toggle}/>
         <div className={collapseFav}>{this.props.listName}</div>
       </div>

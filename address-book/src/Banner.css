@@ -4,6 +4,13 @@
   width: 100%;
 }
 
+.title{
+  font-family: 'Bangers';
+  font-size: 30px;
+  margin: 0;
+  padding: 10px;
+}
+
 .addIcon{
   position: fixed;
   right: 3%;
@@ -14,6 +21,50 @@
 
 .addIcon:active{
   opacity: 1;
+}
+
+/* modal box popup */
+/* The Modal (background) */
+.hideModal {
+    display: none;
+}
+
+.showModal{
+  display: block;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .sideBarHide{
@@ -28,7 +79,7 @@
   width: 40%;
   height: 50%;
   background-color: #ececec;
-  border-bottom-right-radius: 5%;
+  border-bottom-right-radius: 10%;
   border-width: thick;
   border-color: yellow;
 }
@@ -43,6 +94,28 @@
 .sort{
   position: fixed;
   left: 3%;
+  top: 12%;
+  width: auto;
+  font-size: 20px;
+}
+
+.sortBy{
+  position: fixed;
+  left: 3%;
+  top: 4%;
+  font-size: 25px;
+}
+
+.byName{
+  position: fixed;
+  left: 20%;
   top: 10%;
-  width: 10%;
+  font-size: 20px;
+}
+
+.country{
+  position: fixed;
+  left: 3%;
+  top: 16%;
+  font-size: 20px;
 }

@@ -18,14 +18,25 @@ class App extends Component {
       searchBar: false,
       intervalid: 0,
       scrollStepInPx: "50",
-      delayInMs: "16"
+      delayInMs: "16",
+      index: " ",
+      fav: false
     };
     this.Search=this.Search.bind(this);
     this.showSearchBar=this.showSearchBar.bind(this);
     this.scrollStep=this.scrollStep.bind(this);
     this.scrollToTop=this.scrollToTop.bind(this);
     this.sortByName=this.sortByName.bind(this);
+    this.contactIconFav=this.contactIconFav.bind(this);
+    // this.handleClick=this.handleClick.bind(this);
   }
+
+  // componentDidMount() {
+  //   // listen to scroll
+  //     // check whether the document is scrolled
+  //       // YES: setState  showButton: true
+  //       // NO: setState: showButton: false
+  // }
 
   Search(e){
     this.setState({
@@ -39,7 +50,7 @@ class App extends Component {
     });
   }
 
-  //scrollToTop functions code from https://codepen.io/Qbrid/pen/GjVvwL
+  //scrollToTop functions modified from code from https://codepen.io/Qbrid/pen/GjVvwL
 
   scrollStep() {
     if (window.pageYOffset === 0) {
@@ -66,18 +77,81 @@ class App extends Component {
     });
   }
 
+  handleClick(i){
+    console.log(i);
+    this.setState({
+      index: i
+    });
+  }
+
+  contactIconFav(){
+    this.setState({
+      fav: !this.state.fav
+    });
+  }
+
   render() {
     const listNames = [
-      {first: "Bob", last: "Penguin"},
-      {first: "Amy", last: "Bird"},
-      {first: "Dylan", last: "Fox"},
-      {first: "Tiger", last: "Tiger"},
-      {first: "Papa", last: "Elephant"},
-      {first: "Mama", last: "Dinosaur"},
-      {first: "George", last: "Sheep"},
-      {first: "Mary", last: "Hippo"},
-      {first: "Sam", last: "Cockroach"},
-      {first: "Kiko", last: "Human"},
+      { first: "Bob", last: "Penguin",
+        phone: "00000000",
+        email: "bp@nyu.edu",
+        address: "Pearl Tower",
+        country: "China"
+      },
+      { first: "Amy", last: "Bird",
+        phone: "11111111",
+        email: "ab@nyu.edu",
+        address: "NYU Shanghai",
+        country: "China"
+      },
+      { first: "Dylan", last: "Fox",
+        phone: "22222222",
+        email: "df@nyu.edu",
+        address: "Big Ben",
+        country: "UK"
+      },
+      { first: "Tiger", last: "Tiger",
+        phone: "33333333",
+        email: "tt@nyu.edu",
+        address: "Statue of Liberty",
+        country: "US"
+      },
+      { first: "Papa", last: "Elephant",
+        phone: "44444444",
+        email: "pe@nyu.edu",
+        address: "Hollywood",
+        country: "US"
+      },
+      { first: "Mama", last: "Dinosaur",
+        phone: "55555555",
+        email: "md@nyu.edu",
+        address: "NYU",
+        country: "US"
+      },
+      { first: "George", last: "Sheep",
+        phone: "66666666",
+        email: "gs@nyu.edu",
+        address: "Tiananmen",
+        country: "China"
+      },
+      { first: "Mary", last: "Hippo",
+        phone: "77777777",
+        email: "mh@nyu.edu",
+        address: "The Great Wall",
+        country: "China"
+      },
+      { first: "Sam", last: "Cockroach",
+        phone: "88888888",
+        email: "sc@nyu.edu",
+        address: "The White House",
+        country: "US"
+      },
+      { first: "Kiko", last: "Human",
+        phone: "99999999",
+        email: "kh@nyu.edu",
+        address: "Panda's Home",
+        country: "China"
+      },
     ];
 
     //default should be in alphabetical order
@@ -102,16 +176,47 @@ class App extends Component {
         const firstName = name.first.toLowerCase();
         const lastName = name.last.toLowerCase();
         const fullName = firstName + " " + lastName;
-        return fullName.match(searching);
+        const phone = name.phone.toLowerCase();
+        const email = name.email.toLowerCase();
+        const address = name.address.toLowerCase();
+        const country = name.country.toLowerCase();
+        return fullName.match(searching) || phone.match(searching) || email.match(searching) || address.match(searching) || country.match(searching);
       });
+    }
+
+    let contactIcon = "contactNorm";
+    if (this.state.fav===true) {
+      contactIcon = "contactFav";
     }
 
     const listAll = listCopy.map((name, i) => {
       return(
-        <div key={i} className="listing">
+        <div key={i} className="listing" onClick={this.handleClick.bind(this, i)}>
           <div className="firstName">{name.first}</div>
-          <img src={contactPic} className="contactPic"/>
+          <img src={contactPic} className={contactIcon}/>
           <div className="lastName">{name.last}</div>
+        </div>
+      );
+    });
+
+    const listContactInfo = listCopy.map((info, i) => {
+      return(
+        <div key={i}>
+          <div>{info.phone}</div>
+          <div>{info.email}</div>
+          <div>{info.address}</div>
+          <div>{info.country}</div>
+        </div>
+      );
+    });
+
+    let countryNames = [...new Set(listCopy)];
+
+
+    const countryMap = countryNames.map((country, i) => {
+      return(
+        <div key={i}>
+          <div>{country.country}</div>
         </div>
       );
     });
@@ -128,23 +233,29 @@ class App extends Component {
         <Banner
           onClick={this.sortByName}
           sortBy={this.state.sortBy}
+          countries={countryMap}
         />
         <Profile />
         <hr />
         <Favorite
           listName={listAll}
+          mustShow={this.state.search !== " "}
         />
         <hr />
         <List
           listName={listAll}
+          mustShow={this.state.search !== " "}
+          contactName={listAll[this.state.index]}
+          contactInfo={listContactInfo[this.state.index]}
+          addFav={this.contactIconFav}
         />
+        <div className="searchBG" />
         <input
           type="text"
-          placeholder="Search"
+          placeholder="Search Name/Info"
           className={searchBarClass}
           onChange={this.Search}
         />
-        <div className="search" />
         <img className={searchIconClass} src={search} onClick={this.showSearchBar}/>
         <img src={goTop} className="goTop" />
         <div className="scroll"
