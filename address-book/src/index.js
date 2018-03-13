@@ -7,7 +7,7 @@ import WebFont from 'webfontloader';
 
 WebFont.load({
   google: {
-    families: ['Bangers:cursive', 'sans-serif']
+    families: ['Bangers:cursive', 'Open+Sans', 'sans-serif']
   }
 });
 

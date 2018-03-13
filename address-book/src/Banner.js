@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Banner.css';
 import addIcon from './pics/add.png';
 import sideIcon from './pics/sidelist.svg';
+import contactPic from './pics/contact.png';
 
 class Banner extends Component {
   constructor(props){
@@ -14,6 +15,7 @@ class Banner extends Component {
     this.onClick=this.onClick.bind(this);
     this.showModal=this.showModal.bind(this);
     this.closeModal=this.closeModal.bind(this);
+    this.showAllCountry=this.showAllCountry.bind(this);
   }
 
   toggle(){
@@ -38,6 +40,10 @@ class Banner extends Component {
     });
   }
 
+  showAllCountry(){
+    this.props.showAllCountry();
+  }
+
   render() {
     let sideBarClass = "sideBarHide";
     if (this.state.open===true){
@@ -56,7 +62,13 @@ class Banner extends Component {
         <div className={modalClass}>
           <div className="modal-content">
             <span className="close" onClick={this.closeModal}>&times;</span>
-            <div className="addContact">Add Contact</div>
+            Add Contact
+            <div className="listing addContact">
+              <input className="inputFirst" placeholder="first name"></input>
+              <img src={contactPic} className="contactNorm" />
+              <input className="inputLast" placeholder="last name"></input>
+            </div>
+            <button className="confirm">Confirm</button>
           </div>
         </div>
 
@@ -64,16 +76,19 @@ class Banner extends Component {
 
         <div className={sideBarClass}>
           <div className="sortByName">
-            <p className="sortBy">Sort by </p>
+            <p className="sortBy">SORT BY </p>
             <button onClick={this.onClick} className="sort">
               {this.props.sortBy}
             </button>
             <p className="byName"> Name</p>
           </div>
 
+          <hr className="line" />
+
           <div className="sortByCountry">
             <p className="country">Country</p>
-            {this.props.countries}
+            <button className="allCountry" onClick={this.showAllCountry}>All</button>
+            <div className="countryList">{this.props.countries}</div>
           </div>
         </div>
 

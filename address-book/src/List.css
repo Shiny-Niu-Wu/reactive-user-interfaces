@@ -2,6 +2,11 @@
 
 }
 
+.empty{
+  height: 200px;
+  width: 100%;
+}
+
 .category{
   margin: 0;
   font-size: 15px;

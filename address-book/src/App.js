@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
+import Scroll from 'react-scroll';
 import './App.css';
 import Banner from './Banner.js';
+import Button from './Button.js';
 import Profile from './Profile.js';
 import Favorite from './Favorite.js';
 import List from './List.js';
 import contactPic from './pics/contact.png';
+import address from './pics/address.png';
+import email from './pics/email.png';
+import phone from './pics/phone.png';
+import cake from './pics/cake.png';
 import search from './pics/searchIcon.png';
 import goTop from './pics/goTop.svg';
 
@@ -18,17 +24,40 @@ class App extends Component {
       searchBar: false,
       intervalid: 0,
       scrollStepInPx: "50",
+      showScroll: null,
       delayInMs: "16",
       index: " ",
+      country: "",
+      showAll: false,
       fav: false
     };
     this.Search=this.Search.bind(this);
     this.showSearchBar=this.showSearchBar.bind(this);
     this.scrollStep=this.scrollStep.bind(this);
     this.scrollToTop=this.scrollToTop.bind(this);
+    this.handleScroll=this.handleScroll.bind(this);
     this.sortByName=this.sortByName.bind(this);
     this.contactIconFav=this.contactIconFav.bind(this);
-    // this.handleClick=this.handleClick.bind(this);
+    this.buttonClicked=this.buttonClicked.bind(this);
+    this.showAllCountry=this.showAllCountry.bind(this);
+  }
+
+  componentWillMount(){
+    window.addEventListener('scroll', this.handleScroll);
+    this.setState({
+      showScroll: "scrollHide"
+    });
+  }
+
+  componentDidMount() {
+    window.removeEventListener('scroll', this.handleScroll);
+    this.setState({
+      showScroll: "scrollShow"
+    });
+  }
+
+  handleScroll() {
+    window.scrollTo(0, 0);
   }
 
   // componentDidMount() {
@@ -90,67 +119,112 @@ class App extends Component {
     });
   }
 
+  buttonClicked(country){
+    this.setState({
+      country: country,
+      active: country,
+      showAll: false
+    });
+  }
+
+  showAllCountry(){
+    this.setState({
+      showAll: true,
+      active: ""
+    });
+  }
+
   render() {
     const listNames = [
       { first: "Bob", last: "Penguin",
+        nickName: "Bob-Ball Tea",
+        bday: "10/10, 1997",
         phone: "00000000",
         email: "bp@nyu.edu",
         address: "Pearl Tower",
-        country: "China"
+        country: "China",
+        note: "Childhood Friend"
       },
       { first: "Amy", last: "Bird",
+        nickName: "Ayy",
+        bday: "11/11, 1997",
         phone: "11111111",
         email: "ab@nyu.edu",
         address: "NYU Shanghai",
-        country: "China"
+        country: "China",
+        note: "Childhood Friend"
       },
       { first: "Dylan", last: "Fox",
+        nickName: "Fox",
+        bday: "12/22, 1997",
         phone: "22222222",
         email: "df@nyu.edu",
         address: "Big Ben",
-        country: "UK"
+        country: "UK",
+        note: "Childhood Friend"
       },
       { first: "Tiger", last: "Tiger",
+        nickName: "Woods",
+        bday: "03/13, 1997",
         phone: "33333333",
         email: "tt@nyu.edu",
         address: "Statue of Liberty",
-        country: "US"
+        country: "US",
+        note: "Childhood Friend"
       },
       { first: "Papa", last: "Elephant",
+        nickName: "Circus Afro",
+        bday: "04/04, 1997",
         phone: "44444444",
         email: "pe@nyu.edu",
         address: "Hollywood",
-        country: "US"
+        country: "US",
+        note: "Childhood Friend"
       },
       { first: "Mama", last: "Dinosaur",
+        nickName: "Roar",
+        bday: "05/05, 1997",
         phone: "55555555",
         email: "md@nyu.edu",
         address: "NYU",
-        country: "US"
+        country: "US",
+        note: "Childhood Friend"
       },
       { first: "George", last: "Sheep",
+        nickName: "Baaa",
+        bday: "06/06, 1997",
         phone: "66666666",
         email: "gs@nyu.edu",
         address: "Tiananmen",
-        country: "China"
+        country: "China",
+        note: "Childhood Friend"
       },
       { first: "Mary", last: "Hippo",
+        nickName: "Hipopcorn",
+        bday: "07/07, 1997",
         phone: "77777777",
         email: "mh@nyu.edu",
         address: "The Great Wall",
-        country: "China"
+        country: "China",
+        note: "Childhood Friend"
       },
       { first: "Sam", last: "Cockroach",
+        nickName: "Cocky",
+        bday: "08/08, 1997",
         phone: "88888888",
         email: "sc@nyu.edu",
         address: "The White House",
-        country: "US"
+        country: "US",
+        note: "Childhood Friend"
       },
       { first: "Kiko", last: "Human",
+        nickName: "Homo Sapiens",
+        bday: "09/09, 1997",
         phone: "99999999",
         email: "kh@nyu.edu",
         address: "Panda's Home",
-        country: "China"
+        country: "China",
+        note: "Childhood Friend"
       },
     ];
 
@@ -170,23 +244,41 @@ class App extends Component {
       );
     }
 
+    let countryNames = [];
+
+    const countryMap = listCopy.map((country, i) => {
+      countryNames.push(country.country);
+    });
+
+    countryNames =  [...new Set(countryNames)];
+
     if(this.state.search != " "){
       listCopy = listCopy.filter((name) => {
         const searching = this.state.search.toLowerCase();
         const firstName = name.first.toLowerCase();
         const lastName = name.last.toLowerCase();
         const fullName = firstName + " " + lastName;
+        const nickname = name.nickName.toLowerCase();
+        const bday = name.bday.toLowerCase();
         const phone = name.phone.toLowerCase();
         const email = name.email.toLowerCase();
         const address = name.address.toLowerCase();
         const country = name.country.toLowerCase();
-        return fullName.match(searching) || phone.match(searching) || email.match(searching) || address.match(searching) || country.match(searching);
+        return fullName.match(searching) || nickname.match(searching) || bday.match(searching) || phone.match(searching) || email.match(searching) || address.match(searching) || country.match(searching);
       });
     }
 
     let contactIcon = "contactNorm";
     if (this.state.fav===true) {
       contactIcon = "contactFav";
+    }
+
+    if (this.state.showAll===false && this.state.country != "") {
+      listCopy = listCopy.filter((list) => {
+        const countryName = this.state.country;
+        const country = list.country;
+        return country.match(countryName);
+      });
     }
 
     const listAll = listCopy.map((name, i) => {
@@ -201,25 +293,62 @@ class App extends Component {
 
     const listContactInfo = listCopy.map((info, i) => {
       return(
-        <div key={i}>
-          <div>{info.phone}</div>
-          <div>{info.email}</div>
-          <div>{info.address}</div>
-          <div>{info.country}</div>
+        <div key={i} className="info">
+          <div className="nickName">( {info.nickName} )</div>
+          <div><img src={cake} className="cake"></img>{info.bday}</div>
+          <div><img src={phone} className="phone"></img>{info.phone}</div>
+          <div><img src={email} className="email"></img>{info.email}</div>
+          <div><img src={address} className="address"></img>{info.address}, {info.country}</div>
+          <div>Notes: <span className="note">{info.note}</span></div>
         </div>
       );
     });
 
-    let countryNames = [...new Set(listCopy)];
-
-
-    const countryMap = countryNames.map((country, i) => {
+    const countryMapMap = countryNames.map((country, i) => {
       return(
-        <div key={i}>
-          <div>{country.country}</div>
+        <div className="sortCountry">
+            <Button
+              onClick = {this.buttonClicked}
+              country = {country}
+              active = {this.state.active}
+            />
         </div>
       );
     });
+
+    // if (this.state.checked===true) {
+    //   listCopy = listCopy.filter((list) => {
+    //     const uniqueCountry = countryNames;
+    //     const all = list.country;
+    //     const filter = this.state.filterCountry;
+    //       return all.match(filter);
+    //   });
+    //   console.log(this.state.countryIndex);
+    // }
+
+    // const filterCountry = [];
+  //  const listCountry = listCopy.map(list => list.country);
+    // let idx = countryNames.indexOf(listCountry);
+
+    // if (this.state.checked===true) {
+    //   for (var i = 0; i < listCountry.length; i++) {
+    //     for (var k = 0; k < countryNames.length; k++) {
+    //       if (listCountry{}) {
+    //
+    //       }
+    //     }
+    //   }
+    // }
+
+    // if (this.state.checked===true) {
+    //   if (idx > -1){
+    //     filterCountry.push(idx);
+    //     idx = countryNames.indexOf(listCountry, idx +1);
+    //   }
+    //   console.log(filterCountry);
+    // } else if (this.state.checked===false) {
+    //   console.log(filterCountry);
+    // }
 
     let searchIconClass = "searchPic";
     let searchBarClass = "searchBarHide";
@@ -233,7 +362,8 @@ class App extends Component {
         <Banner
           onClick={this.sortByName}
           sortBy={this.state.sortBy}
-          countries={countryMap}
+          countries={countryMapMap}
+          showAllCountry={this.showAllCountry}
         />
         <Profile />
         <hr />
@@ -258,7 +388,7 @@ class App extends Component {
         />
         <img className={searchIconClass} src={search} onClick={this.showSearchBar}/>
         <img src={goTop} className="goTop" />
-        <div className="scroll"
+        <div className={this.state.showScroll}
           onClick={this.scrollToTop}>
           {this.state.scrollStepInPx}
           {this.state.delayInMs}

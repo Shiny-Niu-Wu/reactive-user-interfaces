@@ -84,6 +84,7 @@ class List extends Component {
           </div>
 
           <div className={collapseAll} onClick={this.showModal}>{this.props.listName}</div>
+          <div className="empty"></div>
       </div>
     );
   }
