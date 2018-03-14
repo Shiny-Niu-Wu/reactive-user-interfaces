@@ -30,11 +30,11 @@ class Profile extends Component {
     return (
       <div className="Profile">
         <p className="category">Profile</p>
-        <img src={imgSrc} className="dropImage" onClick={this.toggle}/>
+        <img src={imgSrc} alt={imgSrc} className="dropImage" onClick={this.toggle}/>
           <div className={collapsePro}>
             <div className="listing">
               <div className="firstName">Shiny</div>
-              <img src={contactPic} className="profilePic"/>
+              <img src={contactPic} alt={contactPic} className="profilePic"/>
               <div className="lastName">Wu</div>
             </div>
           </div>

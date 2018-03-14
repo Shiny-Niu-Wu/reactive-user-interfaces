@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Scroll from 'react-scroll';
 import './App.css';
 import Banner from './Banner.js';
 import Button from './Button.js';
@@ -246,13 +245,13 @@ class App extends Component {
 
     let countryNames = [];
 
-    const countryMap = listCopy.map((country, i) => {
-      countryNames.push(country.country);
+    listCopy.map((country, i) => {
+      return countryNames.push(country.country);
     });
 
     countryNames =  [...new Set(countryNames)];
 
-    if(this.state.search != " "){
+    if(this.state.search !== " "){
       listCopy = listCopy.filter((name) => {
         const searching = this.state.search.toLowerCase();
         const firstName = name.first.toLowerCase();
@@ -273,7 +272,7 @@ class App extends Component {
       contactIcon = "contactFav";
     }
 
-    if (this.state.showAll===false && this.state.country != "") {
+    if (this.state.showAll===false && this.state.country !== "") {
       listCopy = listCopy.filter((list) => {
         const countryName = this.state.country;
         const country = list.country;
@@ -285,7 +284,7 @@ class App extends Component {
       return(
         <div key={i} className="listing" onClick={this.handleClick.bind(this, i)}>
           <div className="firstName">{name.first}</div>
-          <img src={contactPic} className={contactIcon}/>
+          <img src={contactPic} alt={contactPic} className={contactIcon}/>
           <div className="lastName">{name.last}</div>
         </div>
       );
@@ -295,10 +294,10 @@ class App extends Component {
       return(
         <div key={i} className="info">
           <div className="nickName">( {info.nickName} )</div>
-          <div><img src={cake} className="cake"></img>{info.bday}</div>
-          <div><img src={phone} className="phone"></img>{info.phone}</div>
-          <div><img src={email} className="email"></img>{info.email}</div>
-          <div><img src={address} className="address"></img>{info.address}, {info.country}</div>
+          <div><img src={cake} alt={cake} className="cake"></img>{info.bday}</div>
+          <div><img src={phone} alt={phone} className="phone"></img>{info.phone}</div>
+          <div><img src={email} alt={email} className="email"></img>{info.email}</div>
+          <div><img src={address} alt={address} className="address"></img>{info.address}, {info.country}</div>
           <div>Notes: <span className="note">{info.note}</span></div>
         </div>
       );
@@ -306,7 +305,7 @@ class App extends Component {
 
     const countryMapMap = countryNames.map((country, i) => {
       return(
-        <div className="sortCountry">
+        <div className="sortCountry" key={i}>
             <Button
               onClick = {this.buttonClicked}
               country = {country}
@@ -386,8 +385,8 @@ class App extends Component {
           className={searchBarClass}
           onChange={this.Search}
         />
-        <img className={searchIconClass} src={search} onClick={this.showSearchBar}/>
-        <img src={goTop} className="goTop" />
+        <img className={searchIconClass} src={search} alt={search} onClick={this.showSearchBar}/>
+        <img src={goTop} alt={goTop} className="goTop" />
         <div className={this.state.showScroll}
           onClick={this.scrollToTop}>
           {this.state.scrollStepInPx}

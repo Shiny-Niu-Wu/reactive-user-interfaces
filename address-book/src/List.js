@@ -67,7 +67,7 @@ class List extends Component {
     return (
       <div className="List">
           <p className="category">All</p>
-          <img src={imgSrc} className="dropImage" onClick={this.toggle}/>
+          <img src={imgSrc} alt={imgSrc} className="dropImage" onClick={this.toggle}/>
 
           <div className={modalClass}>
             <div className="modal-content">

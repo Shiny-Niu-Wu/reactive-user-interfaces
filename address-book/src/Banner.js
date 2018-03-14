@@ -65,14 +65,14 @@ class Banner extends Component {
             Add Contact
             <div className="listing addContact">
               <input className="inputFirst" placeholder="first name"></input>
-              <img src={contactPic} className="contactNorm" />
+              <img src={contactPic} alt={contactPic} className="contactNorm" />
               <input className="inputLast" placeholder="last name"></input>
             </div>
             <button className="confirm">Confirm</button>
           </div>
         </div>
 
-        <img className="addIcon" src={addIcon} onClick={this.showModal} />
+        <img className="addIcon" src={addIcon} alt={addIcon} onClick={this.showModal} />
 
         <div className={sideBarClass}>
           <div className="sortByName">
@@ -92,7 +92,7 @@ class Banner extends Component {
           </div>
         </div>
 
-        <img className="sideIcon" src={sideIcon} onClick={this.toggle} />
+        <img className="sideIcon" src={sideIcon} alt={sideIcon} onClick={this.toggle} />
       </div>
         // <button id="demo-menu-lower-left"
         // className="mdl-button mdl-js-button mdl-button--icon">

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './Favorite.css';
 import dropdownIcon from './pics/dropdown.png';
 import dropupIcon from './pics/dropup.png';
-import contactPic from './pics/contact.png';
 
 class Favorite extends Component {
   constructor(props){
@@ -30,7 +29,7 @@ class Favorite extends Component {
     return (
       <div className="Favorite">
         <p className="category">Best of Best</p>
-        <img src={imgSrc} className="dropImage" onClick={this.toggle}/>
+        <img src={imgSrc} alt={imgSrc} className="dropImage" onClick={this.toggle}/>
         <div className={collapseFav}>{this.props.listName}</div>
       </div>
     );
