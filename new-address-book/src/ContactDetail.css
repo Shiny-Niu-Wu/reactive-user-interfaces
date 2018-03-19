@@ -1,0 +1,68 @@
+.ContactDetail{
+
+}
+
+.contactInfo{
+  padding-bottom: 5px;
+}
+
+.notFav{
+  font-size: 40px;
+  padding: 0;
+  margin: 0;
+  color: transparent;
+  text-shadow: 0 0 0 grey;
+}
+
+.isFav{
+  font-size: 40px;
+  padding: 0;
+  margin: 0;
+  color: transparent;
+  text-shadow: 0 0 2px green;
+}
+
+.noneStar{
+  display: none;
+  margin: 0;
+}
+
+.blockStar{
+  display: block;
+  margin: 0;
+}
+
+.nickName{
+  font-family: 'Bangers';
+  font-size: 25px;
+  padding: 0;
+  margin-bottom: 10px;
+}
+
+.cake{
+  width: 10%;
+  vertical-align: middle;
+}
+
+.phone{
+  width: 13%;
+  vertical-align: middle;
+}
+
+.email{
+  width: 10%;
+  vertical-align: middle;
+  padding-right: 5px;
+  padding-bottom: 5px;
+}
+
+.address{
+  width: 10%;
+  vertical-align: middle;
+  padding-bottom: 10px;
+}
+
+.note{
+  font-family: 'Bangers';
+  font-size: 25px;
+}

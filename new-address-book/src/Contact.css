@@ -1,0 +1,43 @@
+.Contact{
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+}
+
+.Contact:active{
+  background-color: grey
+}
+
+.firstName{
+  flex: 1;
+  padding-top: 15px;
+  padding-right: 10px;
+  text-align: right;
+  font-size: 20px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.lastName{
+  flex: 1;
+  padding-top: 15px;
+  padding-left: 10px;
+  text-align: left;
+  font-size: 20px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.contactNorm{
+  width: 50px;
+  height: 50px;
+  flex: 0 0 50px;
+  border-radius: 50%;
+  border: 5px solid transparent;
+}
+
+.contactFav{
+  width: 50px;
+  height: 50px;
+  flex: 0 0 50px;
+  border-radius: 50%;
+  border: 5px solid green;
+}
