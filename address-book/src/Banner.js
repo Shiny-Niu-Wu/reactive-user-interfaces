@@ -9,13 +9,33 @@ class Banner extends Component {
     super(props);
     this.state={
       open: false,
-      show: false
+      show: false,
+      first: '',
+      last: '',
+      nickName: '',
+      bday: '',
+      phone: '',
+      email: '',
+      address: '',
+      country: '',
+      note: ''
     };
     this.toggle=this.toggle.bind(this);
     this.onClick=this.onClick.bind(this);
     this.showModal=this.showModal.bind(this);
     this.closeModal=this.closeModal.bind(this);
     this.showAllCountry=this.showAllCountry.bind(this);
+    this.addContact=this.addContact.bind(this);
+
+    this.changeFirstName=this.changeFirstName.bind(this);
+    this.changeLastName=this.changeLastName.bind(this);
+    this.changeNickName=this.changeNickName.bind(this);
+    this.changeEmail=this.changeEmail.bind(this);
+    this.changePhone=this.changePhone.bind(this);
+    this.changeBirthday=this.changeBirthday.bind(this);
+    this.changeNotes=this.changeNotes.bind(this);
+    this.changeAddress=this.changeAddress.bind(this);
+    this.changeCountry=this.changeCountry.bind(this);
   }
 
   toggle(){
@@ -44,6 +64,74 @@ class Banner extends Component {
     this.props.showAllCountry();
   }
 
+  addContact(){
+    this.props.addContact(this.state.first,this.state.last,this.state.nickName,this.state.bday,this.state.phone,this.state.email,this.state.address,this.state.note);
+    this.setState({
+      first: '',
+      last: '',
+      nickName: '',
+      bday: '',
+      phone: '',
+      email: '',
+      address: '',
+      note: ''
+    });
+  }
+
+  changeFirstName(e){
+    this.setState({
+      first: e.target.value
+    });
+  }
+
+  changeLastName(e){
+    this.setState({
+      last: e.target.value
+    });
+  }
+
+  changeNickName(e){
+    this.setState({
+      nickName: e.target.value
+    });
+  }
+
+  changeBirthday(e){
+    this.setState({
+      bday: e.target.value
+    });
+  }
+
+  changePhone(e){
+    this.setState({
+      phone: e.target.value
+    });
+  }
+
+  changeEmail(e){
+    this.setState({
+      email: e.target.value
+    });
+  }
+
+  changeAddress(e){
+    this.setState({
+      address: e.target.value
+    });
+  }
+
+  changeCountry(e){
+    this.setState({
+      country: e.target.value
+    });
+  }
+
+  changeNotes(e){
+    this.setState({
+      note: e.target.value
+    });
+  }
+
   render() {
     let sideBarClass = "sideBarHide";
     if (this.state.open===true){
@@ -64,11 +152,22 @@ class Banner extends Component {
             <span className="close" onClick={this.closeModal}>&times;</span>
             Add Contact
             <div className="listing addContact">
-              <input className="inputFirst" placeholder="first name"></input>
+              <input value={this.state.first} className="inputFirst" placeholder="first name" onChange={this.changeFirstName}></input>
               <img src={contactPic} alt={contactPic} className="contactNorm" />
-              <input className="inputLast" placeholder="last name"></input>
+              <input value={this.state.last} className="inputLast" placeholder="last name" onChange={this.changeLastName}></input>
             </div>
-            <button className="confirm">Confirm</button>
+            <div className="detail">
+              <input value={this.state.nickName} className="inputNickname" placeholder="nickname" onChange={this.changeNickName}></input>
+              <input value={this.state.bday} className="inputBirthday" placeholder="birthday" onChange={this.changeBirthday}></input>
+              <input value={this.state.phone} className="inputPhone" placeholder="phone number" onChange={this.changePhone}></input>
+              <input value={this.state.email} className="inputEmail" placeholder="email" onChange={this.changeEmail}></input>
+              <input value={this.state.address} className="inputAddress" placeholder="address" onChange={this.changeAddress}></input>
+              <input value={this.state.country} className="inputCountry" placeholder="country" onChange={this.changeCountry}></input>
+              <input value={this.state.note} className="inputNotes" placeholder="notes" onChange={this.changeNotes}></input>
+              <div className="confirm">
+                <button className="confirmButton" onClick={this.addContact}>Confirm</button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -76,7 +175,7 @@ class Banner extends Component {
 
         <div className={sideBarClass}>
           <div className="sortByName">
-            <p className="sortBy">SORT BY </p>
+            <p className="sortBy">SORT BY</p>
             <button onClick={this.onClick} className="sort">
               {this.props.sortBy}
             </button>

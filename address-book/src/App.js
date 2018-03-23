@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Banner from './Banner.js';
-import Button from './Button.js';
+import CountryButton from './CountryButton.js';
 import Profile from './Profile.js';
 import Favorite from './Favorite.js';
 import List from './List.js';
@@ -16,7 +16,23 @@ import goTop from './pics/goTop.svg';
 class App extends Component {
   constructor(props){
     super(props);
-    this.state={
+
+    this.Search=this.Search.bind(this);
+    this.showSearchBar=this.showSearchBar.bind(this);
+    this.scrollStep=this.scrollStep.bind(this);
+    this.scrollToTop=this.scrollToTop.bind(this);
+    this.handleScroll=this.handleScroll.bind(this);
+    this.sortByName=this.sortByName.bind(this);
+    this.contactIconFav=this.contactIconFav.bind(this);
+    this.buttonClicked=this.buttonClicked.bind(this);
+    this.showAllCountry=this.showAllCountry.bind(this);
+    this.addContact=this.addContact.bind(this);
+
+    let stringState = localStorage.getItem('contactData');
+    if (stringState) {
+      this.state = JSON.parse(stringState);
+    } else {
+      this.state = {
       search: " ",
       sortByFirst: true,
       sortBy: "First",
@@ -28,18 +44,102 @@ class App extends Component {
       index: " ",
       country: "",
       showAll: false,
-      fav: false
+      fav: false,
+      contacts: [
+        { first: "Bob", last: "Penguin",
+          nickName: "Bob-Ball Tea",
+          bday: "10/10, 1997",
+          phone: "00000000",
+          email: "bp@nyu.edu",
+          address: "Pearl Tower",
+          country: "China",
+          note: "Childhood Friend"
+        },
+        { first: "Amy", last: "Bird",
+          nickName: "Ayy",
+          bday: "11/11, 1997",
+          phone: "11111111",
+          email: "ab@nyu.edu",
+          address: "NYU Shanghai",
+          country: "China",
+          note: "Childhood Friend"
+        },
+        { first: "Dylan", last: "Fox",
+          nickName: "Fox",
+          bday: "12/22, 1997",
+          phone: "22222222",
+          email: "df@nyu.edu",
+          address: "Big Ben",
+          country: "UK",
+          note: "Childhood Friend"
+        },
+        { first: "Tiger", last: "Tiger",
+          nickName: "Woods",
+          bday: "03/13, 1997",
+          phone: "33333333",
+          email: "tt@nyu.edu",
+          address: "Statue of Liberty",
+          country: "US",
+          note: "Childhood Friend"
+        },
+        { first: "Papa", last: "Elephant",
+          nickName: "Circus Afro",
+          bday: "04/04, 1997",
+          phone: "44444444",
+          email: "pe@nyu.edu",
+          address: "Hollywood",
+          country: "US",
+          note: "Childhood Friend"
+        },
+        { first: "Mama", last: "Dinosaur",
+          nickName: "Roar",
+          bday: "05/05, 1997",
+          phone: "55555555",
+          email: "md@nyu.edu",
+          address: "NYU",
+          country: "US",
+          note: "Childhood Friend"
+        },
+        { first: "George", last: "Sheep",
+          nickName: "Baaa",
+          bday: "06/06, 1997",
+          phone: "66666666",
+          email: "gs@nyu.edu",
+          address: "Tiananmen",
+          country: "China",
+          note: "Childhood Friend"
+        },
+        { first: "Mary", last: "Hippo",
+          nickName: "Hipopcorn",
+          bday: "07/07, 1997",
+          phone: "77777777",
+          email: "mh@nyu.edu",
+          address: "The Great Wall",
+          country: "China",
+          note: "Childhood Friend"
+        },
+        { first: "Sam", last: "Cockroach",
+          nickName: "Cocky",
+          bday: "08/08, 1997",
+          phone: "88888888",
+          email: "sc@nyu.edu",
+          address: "The White House",
+          country: "US",
+          note: "Childhood Friend"
+        },
+        { first: "Kiko", last: "Human",
+          nickName: "Homo Sapiens",
+          bday: "09/09, 1997",
+          phone: "99999999",
+          email: "kh@nyu.edu",
+          address: "Panda's Home",
+          country: "China",
+          note: "Childhood Friend"
+        }
+      ]
     };
-    this.Search=this.Search.bind(this);
-    this.showSearchBar=this.showSearchBar.bind(this);
-    this.scrollStep=this.scrollStep.bind(this);
-    this.scrollToTop=this.scrollToTop.bind(this);
-    this.handleScroll=this.handleScroll.bind(this);
-    this.sortByName=this.sortByName.bind(this);
-    this.contactIconFav=this.contactIconFav.bind(this);
-    this.buttonClicked=this.buttonClicked.bind(this);
-    this.showAllCountry=this.showAllCountry.bind(this);
   }
+}
 
   componentWillMount(){
     window.addEventListener('scroll', this.handleScroll);
@@ -53,6 +153,12 @@ class App extends Component {
     this.setState({
       showScroll: "scrollShow"
     });
+  }
+
+  //local storage
+  componentDidUpdate(){
+    const stringState = JSON.stringify(this.state);
+    localStorage.setItem('contactData', stringState);
   }
 
   handleScroll() {
@@ -133,126 +239,66 @@ class App extends Component {
     });
   }
 
+  addContact(first, last, nickName, bday, phone, email, address, country, note){
+    let listCopy = this.state.contacts.slice();
+    listCopy.push({
+      first: first,
+      last: last,
+      nickName: nickName,
+      bday: bday,
+      phone: phone,
+      email: email,
+      address: address,
+      country: country,
+      note: note
+    });
+    this.setState({
+      contacts: listCopy
+    });
+  }
+
   render() {
-    const listNames = [
-      { first: "Bob", last: "Penguin",
-        nickName: "Bob-Ball Tea",
-        bday: "10/10, 1997",
-        phone: "00000000",
-        email: "bp@nyu.edu",
-        address: "Pearl Tower",
-        country: "China",
-        note: "Childhood Friend"
-      },
-      { first: "Amy", last: "Bird",
-        nickName: "Ayy",
-        bday: "11/11, 1997",
-        phone: "11111111",
-        email: "ab@nyu.edu",
-        address: "NYU Shanghai",
-        country: "China",
-        note: "Childhood Friend"
-      },
-      { first: "Dylan", last: "Fox",
-        nickName: "Fox",
-        bday: "12/22, 1997",
-        phone: "22222222",
-        email: "df@nyu.edu",
-        address: "Big Ben",
-        country: "UK",
-        note: "Childhood Friend"
-      },
-      { first: "Tiger", last: "Tiger",
-        nickName: "Woods",
-        bday: "03/13, 1997",
-        phone: "33333333",
-        email: "tt@nyu.edu",
-        address: "Statue of Liberty",
-        country: "US",
-        note: "Childhood Friend"
-      },
-      { first: "Papa", last: "Elephant",
-        nickName: "Circus Afro",
-        bday: "04/04, 1997",
-        phone: "44444444",
-        email: "pe@nyu.edu",
-        address: "Hollywood",
-        country: "US",
-        note: "Childhood Friend"
-      },
-      { first: "Mama", last: "Dinosaur",
-        nickName: "Roar",
-        bday: "05/05, 1997",
-        phone: "55555555",
-        email: "md@nyu.edu",
-        address: "NYU",
-        country: "US",
-        note: "Childhood Friend"
-      },
-      { first: "George", last: "Sheep",
-        nickName: "Baaa",
-        bday: "06/06, 1997",
-        phone: "66666666",
-        email: "gs@nyu.edu",
-        address: "Tiananmen",
-        country: "China",
-        note: "Childhood Friend"
-      },
-      { first: "Mary", last: "Hippo",
-        nickName: "Hipopcorn",
-        bday: "07/07, 1997",
-        phone: "77777777",
-        email: "mh@nyu.edu",
-        address: "The Great Wall",
-        country: "China",
-        note: "Childhood Friend"
-      },
-      { first: "Sam", last: "Cockroach",
-        nickName: "Cocky",
-        bday: "08/08, 1997",
-        phone: "88888888",
-        email: "sc@nyu.edu",
-        address: "The White House",
-        country: "US",
-        note: "Childhood Friend"
-      },
-      { first: "Kiko", last: "Human",
-        nickName: "Homo Sapiens",
-        bday: "09/09, 1997",
-        phone: "99999999",
-        email: "kh@nyu.edu",
-        address: "Panda's Home",
-        country: "China",
-        note: "Childhood Friend"
-      },
-    ];
 
-    //default should be in alphabetical order
-
-    let listCopy = listNames.slice();
+    let copy = this.state.contacts.slice();
 
     if (this.state.sortByFirst===true) {
-      listCopy = listCopy.sort((firstA, firstB) =>
-        firstA.first > firstB.first,
-        this.state.sortBy = "Last"
-      );
+      copy = copy.sort((a, b) => {
+        if (a.first.toLowerCase() > b.first.toLowerCase()) return 1;
+        if (a.first.toLowerCase() < b.first.toLowerCase()) return -1;
+        return 0;
+      });
+        this.state.sortBy = "Last";
     } else if (this.state.sortByFirst===false) {
-      listCopy = listCopy.sort((lastA, lastB) =>
-        lastA.last > lastB.last,
-        this.state.sortBy = "First"
-      );
+      copy = copy.sort((a, b) => {
+        if (a.last.toLowerCase() > b.last.toLowerCase()) return 1;
+        if (a.last.toLowerCase() < b.last.toLowerCase()) return -1;
+        return 0;
+      });
+        this.state.sortBy = "First";
     }
+
+    // if (this.state.sortByFirst===true) {
+    //   copy = copy.sort((firstA, firstB) =>
+    //     firstA.first > firstB.first,
+    //     this.state.sortBy = "Last"
+    //   );
+    // } else if (this.state.sortByFirst===false) {
+    //   copy = copy.sort((lastA, lastB) =>
+    //     lastA.last > lastB.last,
+    //     this.state.sortBy = "First"
+    //   );
+    // }
 
     let countryNames = [];
 
-    listCopy.map((country, i) => {
+    copy.map((country, i) => {
       return countryNames.push(country.country);
     });
 
     countryNames =  [...new Set(countryNames)];
 
     if(this.state.search !== " "){
-      listCopy = listCopy.filter((name) => {
+      copy = copy.filter((name) => {
         const searching = this.state.search.toLowerCase();
         const firstName = name.first.toLowerCase();
         const lastName = name.last.toLowerCase();
@@ -273,14 +319,14 @@ class App extends Component {
     }
 
     if (this.state.showAll===false && this.state.country !== "") {
-      listCopy = listCopy.filter((list) => {
+      copy = copy.filter((list) => {
         const countryName = this.state.country;
         const country = list.country;
         return country.match(countryName);
       });
     }
 
-    const listAll = listCopy.map((name, i) => {
+    const listAll = copy.map((name, i) => {
       return(
         <div key={i} className="listing" onClick={this.handleClick.bind(this, i)}>
           <div className="firstName">{name.first}</div>
@@ -290,7 +336,7 @@ class App extends Component {
       );
     });
 
-    const listContactInfo = listCopy.map((info, i) => {
+    const listContactInfo = copy.map((info, i) => {
       return(
         <div key={i} className="info">
           <div className="nickName">( {info.nickName} )</div>
@@ -306,7 +352,7 @@ class App extends Component {
     const countryMapMap = countryNames.map((country, i) => {
       return(
         <div className="sortCountry" key={i}>
-            <Button
+            <CountryButton
               onClick = {this.buttonClicked}
               country = {country}
               active = {this.state.active}
@@ -363,6 +409,7 @@ class App extends Component {
           sortBy={this.state.sortBy}
           countries={countryMapMap}
           showAllCountry={this.showAllCountry}
+          addContact={this.addContact}
         />
         <Profile />
         <hr />

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './List.css';
+import ContactPageButton from './ContactPageButton';
 import dropdownIcon from './pics/dropdown.png';
 import dropupIcon from './pics/dropup.png';
 
@@ -79,6 +80,8 @@ class List extends Component {
                   <p className={blackStar}>&#9733;</p>
                 </div>
                 <div>{this.props.contactInfo}</div>
+                <ContactPageButton color="green">Edit</ContactPageButton>
+                <ContactPageButton color="red">Delete</ContactPageButton>
               </div>
             </div>
           </div>
