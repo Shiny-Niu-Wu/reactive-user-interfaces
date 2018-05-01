@@ -1,0 +1,14 @@
+.App {
+
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+.boxes{
+  padding: 20px;
+  width: 50%;
+  margin: 0;
+}

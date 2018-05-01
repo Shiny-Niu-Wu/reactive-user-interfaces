@@ -1,0 +1,89 @@
+.diaryBox{
+  text-align: center;
+}
+
+.choose{
+  display: flex;
+  flex-direction: row;
+}
+
+.date{
+  flex: 1;
+}
+
+.group{
+  flex: auto;
+}
+
+select:required:invalid {
+  color: gray;
+}
+option[value=""][disabled] {
+  display: none;
+}
+option {
+  color: black;
+}
+
+.content{
+   /* add shadow */
+   padding: 20px;
+   width: 70%;
+   height: 50vh;
+   background-color: white;
+   font-size: 20px;
+   vertical-align: top;
+   border: none;
+   outline: none;
+   -webkit-box-shadow: 0px 0px 81px -4px rgba(179,177,179,1);
+   -moz-box-shadow: 0px 0px 81px -4px rgba(179,177,179,1);
+   box-shadow: 0px 0px 81px -4px rgba(179,177,179,1);
+}
+
+.titleBox{
+  padding: 20px;
+  width: 93%;
+  height: 7vh;
+  background-color: white;
+  font-size: 25px;
+  font-weight: bold;
+  vertical-align: middle;
+  border: none;
+  margin-bottom: 20px;
+  outline: none;
+  -webkit-box-shadow: 0px 0px 81px -4px rgba(179,177,179,1);
+  -moz-box-shadow: 0px 0px 81px -4px rgba(179,177,179,1);
+  box-shadow: 0px 0px 81px -4px rgba(179,177,179,1);
+}
+
+/* both toolbar and editing space */
+.wrapper-class{
+  width: 100%;
+}
+
+/* editing space */
+.editor-class{
+  height: 40vh;
+  background-color: white;
+  -webkit-box-shadow: 0px 0px 81px -4px rgba(179,177,179,1);
+  -moz-box-shadow: 0px 0px 81px -4px rgba(179,177,179,1);
+  box-shadow: 0px 0px 81px -4px rgba(179,177,179,1);
+}
+
+.newEntry{
+  display: none;
+}
+
+.showNew{
+  display: block;
+  background-color: grey;
+  color: white;
+}
+
+.submit{
+  text-align: center;
+}
+
+.transferHTML{
+  opacity: 0;
+}

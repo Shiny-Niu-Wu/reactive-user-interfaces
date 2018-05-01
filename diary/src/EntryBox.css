@@ -1,0 +1,27 @@
+.box{
+  padding: 20px;
+  background-color: white;
+  border: none;
+  margin-right: 50px;
+  margin-left: 50px;
+  width: 100%;
+  height: 20vh;
+  outline: none;
+  -webkit-box-shadow: 0px 0px 81px -4px rgba(179,177,179,1);
+  -moz-box-shadow: 0px 0px 81px -4px rgba(179,177,179,1);
+  box-shadow: 0px 0px 81px -4px rgba(179,177,179,1);
+}
+
+.box:hover{
+  background-color: #ececec;
+  opacity: 10%;
+}
+
+h2{
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.boxDate{
+  text-align: right;
+}

@@ -1,0 +1,57 @@
+.Button{
+  padding-top: 30px;
+  text-align: center;
+}
+
+.button{
+  padding: 20px;
+  font-size: 20px;
+  background-color: #cecece;
+  outline: none;
+  border: none;
+}
+
+@keyframes animating {
+  0%{
+    background-color: #cecece
+  }
+
+  50%{
+    background-color: green
+  }
+
+  100%{
+    background-color: #cecece
+  }
+}
+
+.animating{
+  animation-name: animating;
+  animation-duration: 0.5s;
+}
+
+.box{
+  background-color: yellow;
+  font-size: 20px;
+}
+
+@keyframes showBox {
+  from{
+    width: 0%
+  }
+
+  to{
+    width: 100%
+  }
+}
+
+.box-enter {
+  animation-name: showBox;
+  animation-duration: 0.5s;
+}
+
+.box-exit {
+  animation-name: showBox;
+  animation-direction: reverse;
+  animation-duration: 0.5s;
+}

@@ -1,0 +1,20 @@
+.comment{
+  outline: none;
+  background-color: white;
+}
+
+.addComment{
+
+}
+
+.info{
+  text-align: right;
+}
+
+.titleBox{
+  text-align: left;
+}
+
+.content{
+  text-align: left;
+}

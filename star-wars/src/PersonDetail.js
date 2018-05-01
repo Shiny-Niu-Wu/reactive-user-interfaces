@@ -11,7 +11,7 @@ class PersonDetail extends Component {
   }
 
   componentDidMount(){
-    fetch("https://swapi.co/api/people/" + this.props.match.params.id + "/")
+    fetch("https://swapi.co/api/people/" + props.match.params.id + "/")
       .then(response => {
         return response.json();
       })
