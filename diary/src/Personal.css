@@ -1,0 +1,17 @@
+.favorites{
+  display: flex;
+  flex-direction: column;
+}
+
+.favoriteSentence{
+  display: flex;
+  flex-direction: row;
+}
+
+.favoriteCategory{
+  flex: 1;
+}
+
+.favoriteThing{
+  flex: auto;
+}

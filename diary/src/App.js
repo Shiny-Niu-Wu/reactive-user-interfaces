@@ -18,31 +18,42 @@ injectTapEventPlugin();
 class App extends Component {
   constructor(props){
     super(props);
-    this.state={
-      entries: [],
-      groups: [],
-      loginPage:[],
-      uploadScreen:[],
-      id: '',
-      search: '',
-      searchGroup: '',
-      selectedGroup: ''
-    };
 
     this.listEntries=this.listEntries.bind(this);
     this.newGroup=this.newGroup.bind(this);
     this.search=this.search.bind(this);
     this.searchGroup=this.searchGroup.bind(this);
     this.clickGroup=this.clickGroup.bind(this);
+    this.addComment=this.addComment.bind(this);
+
+
+    let stringState = localStorage.getItem('diaryData');
+    if (stringState) {
+      this.state = JSON.parse(stringState);
+    } else {
+      this.state={
+        entries: [],
+        groups: [],
+
+        loginPage:[],
+        uploadScreen:[],
+        id: '',
+        search: '',
+
+        searchGroup: '',
+        selectedGroup: '',
+      }
+    }
+
   }
 
-  componentWillMount(){
-    let loginPage =[];
-    loginPage.push(<LoginScreen parentContext={this}/>);
-    this.setState({
-      loginPage:loginPage
-    })
-  }
+  // componentWillMount(){
+  //   let loginPage =[];
+  //   loginPage.push(<LoginScreen parentContext={this}/>);
+  //   this.setState({
+  //     loginPage:loginPage
+  //   })
+  // }
 
   listEntries(date, title, group, html){
     let entriesCopy = this.state.entries.slice();
@@ -51,6 +62,7 @@ class App extends Component {
       title: title,
       group: group,
       html: html,
+      followUps: [],
       id: entriesCopy.length
     });
     this.setState({
@@ -75,8 +87,6 @@ class App extends Component {
     });
   }
 
-
-
   search(e){
     this.setState({
       search: e.target.value
@@ -89,8 +99,28 @@ class App extends Component {
     });
   }
 
+  addComment(comment, id){
+    const entriesCopy = this.state.entries.slice();
+    const entryCopy = Object.assign({}, entriesCopy[id])
+    const followUpsCopy = entryCopy.followUps.slice();
+    followUpsCopy.push({
+      comment: comment
+    });
+    entryCopy.followUps=followUpsCopy;
+    entriesCopy[id]=entryCopy;
+    this.setState({
+      entries: entriesCopy
+    });
+  }
+
+  componentDidUpdate(){
+    const stringState = JSON.stringify(this.state);
+    localStorage.setItem('diaryData', stringState);
+  }
+
   render() {
     let entriesCopy = this.state.entries.slice();
+    console.log(this.state.entries);
     let groupsCopy = this.state.groups.slice();
 
     const chooseGroup = groupsCopy.map((group, i) => {
@@ -108,6 +138,11 @@ class App extends Component {
         {this.state.uploadScreen}
           <Route exact path="/" render={props => {
 
+            entriesCopy = entriesCopy.sort((a, b) => {
+              if (a.date.toLowerCase() < b.date.toLowerCase()) return 1;
+              if (a.date.toLowerCase() > b.date.toLowerCase()) return -1;
+              return 0;
+            });
 
             if (this.state.search !== " ") {
               entriesCopy = entriesCopy.filter((entry) => {
@@ -150,10 +185,9 @@ class App extends Component {
 
             return(
               <Entries
-                entryDate={entry.date}
-                entryTitle={entry.title}
-                entryContent={entry.html}
-                entryGroup={entry.group}
+                entry={entry}
+                addComment={this.addComment}
+                allComments={entry.followUps}
               />
             );
           }}
@@ -170,7 +204,7 @@ class App extends Component {
             const allGroups = groupsCopy.map((group, i) => {
               return(
                 <Link to={"/group/" + group.id} key={'group' + group.id}>
-                  <div  className="boxes">
+                  <div className="boxes">
                     <GroupBox
                       group={group.groupName}
                       clickGroup={this.clickGroup}
@@ -234,7 +268,7 @@ class App extends Component {
               <Personal
 
               />
-            )}
+          )}
           />
         </div>
       </Router>

@@ -7,7 +7,7 @@ class GroupPage extends Component {
   constructor(props){
     super(props);
     this.state={
-      groupName: '',
+      groupName: ''
 
     }
 

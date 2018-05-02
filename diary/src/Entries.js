@@ -7,9 +7,8 @@ class Entries extends Component {
   constructor(props){
     super(props);
     this.state={
-      comment: '',
-      followUps: []
-    };
+      comment: ''
+    }
 
     this.addComment=this.addComment.bind(this);
     this.changeComment=this.changeComment.bind(this);
@@ -21,23 +20,14 @@ class Entries extends Component {
     });
   }
 
-  addComment(comment){
-    let Copy = this.state.followUps.slice();
-    Copy.push({
-      comment: this.state.comment
-    });
+  addComment(){
+    this.props.addComment(this.state.comment, this.props.entry.id);
     this.setState({
-      followUps: Copy,
       comment: ''
     });
   }
 
   render() {
-    let allComments = this.state.followUps.map((comment, i) => {
-      return(
-        <div>{comment.comment}</div>
-      );
-    })
 
     return (
       <div className="Entries">
@@ -52,18 +42,18 @@ class Entries extends Component {
           </aside>
           <main>
             <div className="info">
-              <div>{this.props.entryDate}</div>
-              <div>{this.props.entryGroup}</div>
+              <div>{this.props.entry.date}</div>
+              <div>Group: {this.props.entry.group}</div>
             </div>
             <div className="diaryBox">
-              <div className="titleBox">{this.props.entryTitle}</div>
-              <div className="content" dangerouslySetInnerHTML={{ __html: this.props.entryContent }} />
+              <div className="titleBox">{this.props.entry.title}</div>
+              <div className="content" dangerouslySetInnerHTML={{ __html: this.props.entry.html }} />
             </div>
             <div className="followUp">
               <textarea placeholder="More to say..." className="comment" value={this.state.comment} onChange={this.changeComment}></textarea>
               <button className="addComment" onClick={this.addComment}>Add</button>
             </div>
-            {allComments}
+            {this.props.allComments}
           </main>
         </div>
       </div>
