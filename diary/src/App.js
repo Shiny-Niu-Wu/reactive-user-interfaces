@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import {Link} from 'react-router-dom';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import LoginScreen from './LoginScreen'
 import Homepage from './Homepage';
 import Personal from './Personal';
 import Entries from './Entries';
@@ -13,13 +11,12 @@ import New from './New';
 import EntryBox from './EntryBox';
 import './App.css';
 
-injectTapEventPlugin();
-
 class App extends Component {
   constructor(props){
     super(props);
 
     this.listEntries=this.listEntries.bind(this);
+    this.filterByDate=this.filterByDate.bind(this);
     this.newGroup=this.newGroup.bind(this);
     this.search=this.search.bind(this);
     this.searchGroup=this.searchGroup.bind(this);
@@ -35,10 +32,9 @@ class App extends Component {
         entries: [],
         groups: [],
 
-        loginPage:[],
-        uploadScreen:[],
         id: '',
         search: '',
+        chosenDay: '',
 
         searchGroup: '',
         selectedGroup: '',
@@ -46,14 +42,6 @@ class App extends Component {
     }
 
   }
-
-  // componentWillMount(){
-  //   let loginPage =[];
-  //   loginPage.push(<LoginScreen parentContext={this}/>);
-  //   this.setState({
-  //     loginPage:loginPage
-  //   })
-  // }
 
   listEntries(date, title, group, html){
     let entriesCopy = this.state.entries.slice();
@@ -67,6 +55,12 @@ class App extends Component {
     });
     this.setState({
       entries: entriesCopy
+    });
+  }
+
+  filterByDate(e){
+    this.setState({
+      chosenDay: e.target.value
     });
   }
 
@@ -101,13 +95,14 @@ class App extends Component {
 
   addComment(comment, id){
     const entriesCopy = this.state.entries.slice();
-    const entryCopy = Object.assign({}, entriesCopy[id])
+    const index = this.state.entries.findIndex(e => id === e.id);
+    const entryCopy = Object.assign({}, entriesCopy[index])
     const followUpsCopy = entryCopy.followUps.slice();
     followUpsCopy.push({
       comment: comment
     });
     entryCopy.followUps=followUpsCopy;
-    entriesCopy[id]=entryCopy;
+    entriesCopy[index]=entryCopy;
     this.setState({
       entries: entriesCopy
     });
@@ -119,6 +114,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state);
     let entriesCopy = this.state.entries.slice();
     console.log(this.state.entries);
     let groupsCopy = this.state.groups.slice();
@@ -134,8 +130,6 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-        {this.state.loginPage}
-        {this.state.uploadScreen}
           <Route exact path="/" render={props => {
 
             entriesCopy = entriesCopy.sort((a, b) => {
@@ -143,6 +137,14 @@ class App extends Component {
               if (a.date.toLowerCase() > b.date.toLowerCase()) return -1;
               return 0;
             });
+
+            if (this.state.chosenDay !== " ") {
+              entriesCopy = entriesCopy.filter((entry) => {
+                const day = this.state.chosenDay;
+                const date = entry.date;
+                return date.match(day)
+              });
+            }
 
             if (this.state.search !== " ") {
               entriesCopy = entriesCopy.filter((entry) => {
@@ -153,8 +155,6 @@ class App extends Component {
                 return title.match(searching) || content.match(searching) || group.match(searching)
               });
             }
-
-
 
             const allEntries = entriesCopy.map((entry, i) => {
               return(
@@ -174,6 +174,7 @@ class App extends Component {
                 entries={allEntries}
                 search={this.search}
                 clickDay={this.clickDay}
+                changeDate={this.filterByDate}
               />
             );
           }}
@@ -187,7 +188,6 @@ class App extends Component {
               <Entries
                 entry={entry}
                 addComment={this.addComment}
-                allComments={entry.followUps}
               />
             );
           }}

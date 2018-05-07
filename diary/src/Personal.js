@@ -57,9 +57,9 @@ class Personal extends Component {
     let favorites = this.state.favoriteThings.map((favorite, i) => {
       return(
         <div className="favoriteSentence" key={i}>
-          <p className="favoriteCategory">My favorite </p>
+          <p className="myFavorite">My favorite</p>
           <input defaultValue={favorite.category} className="favoriteCategory" />
-          <p className="favoriteCategory">is </p>
+          <p className="is"> is </p>
           <input defaultValue={favorite.thing} className="favoriteThing" />
         </div>
       );

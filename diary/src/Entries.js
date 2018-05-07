@@ -29,6 +29,8 @@ class Entries extends Component {
 
   render() {
 
+    const comments = this.props.entry.followUps.map(c => <p className="commentLine">{c.comment}</p>)
+
     return (
       <div className="Entries">
         <div className="wrapper">
@@ -53,7 +55,8 @@ class Entries extends Component {
               <textarea placeholder="More to say..." className="comment" value={this.state.comment} onChange={this.changeComment}></textarea>
               <button className="addComment" onClick={this.addComment}>Add</button>
             </div>
-            {this.props.allComments}
+            <p>Comments</p>
+            <div className="allComments">{comments}</div>
           </main>
         </div>
       </div>

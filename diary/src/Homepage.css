@@ -58,22 +58,6 @@ main{
   justify-content: space-around;
 }
 
-/* .filterBy{
-  flex: 1;
-}
-
-.datePicker{
-  flex: 1;
-}
-
-.showAll{
-  flex: 1;
-}
-
-.search{
-  flex: auto;
-} */
-
 .entries{
   display: flex;
   flex-direction: row;

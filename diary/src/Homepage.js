@@ -1,30 +1,26 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import Calendar from 'rc-calendar';
-import 'rc-calendar/assets/index.css';
-import DatePicker from 'rc-calendar/lib/Picker';
 import './Homepage.css';
 import ProfilePic from './pics/profile.jpg';
 
 class Homepage extends Component {
   constructor(props){
     super(props);
-    this.state={
-      
-    }
-
-
+    this.state={}
 
     this.search=this.search.bind(this);
+    this.changeDate=this.changeDate.bind(this);
   }
 
+  changeDate(e){
+    this.props.changeDate(e);
+  }
 
   search(e){
     this.props.search(e);
   }
 
   render() {
-    const format = 'YYYY-MM-DD';
 
     return (
       <div className="Homepage">
@@ -40,35 +36,9 @@ class Homepage extends Component {
           <main>
             <div className="filterBar">
               <div className="filterBy">Filter By Date: </div>
-              <div className="datePicker">
-                <DatePicker
-                  getCalendarContainer={this.getCalendarContainer}
-
-                  calendar={
-                    <Calendar
-
-                    />
-                  }
-                >
-                {
-                  ({ value }) => {
-                    return (
-                      <span>
-                        <input
-                          style={{ width: 200 }}
-                          readOnly
-                          placeholder="Choose Date"
-                          value={value && value.format(format) || ''}
-                        />
-                      </span>
-                    );
-                  }
-                }
-              </DatePicker>
+              <input className="date" type="date" onChange={this.changeDate} />
+              <input className="search" placeholder="Search" onChange={this.search}></input>
             </div>
-            <button className="showAll">Show All</button>
-            <input className="search" placeholder="Search" onChange={this.search}></input>
-          </div>
             <div className="entries">
               {this.props.entries}
             </div>

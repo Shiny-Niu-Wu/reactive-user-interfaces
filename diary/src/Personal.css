@@ -9,9 +9,19 @@
 }
 
 .favoriteCategory{
-  flex: 1;
+  flex: 2;
 }
 
 .favoriteThing{
-  flex: auto;
+  flex: 3;
+}
+
+.is{
+  flex: 1;
+  text-align: center;
+}
+
+.myFavorite{
+  flex: 2;
+  text-align: center;
 }
