@@ -6,6 +6,7 @@ import draftToHtml from 'draftjs-to-html';
 import '../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './New.css';
 import ProfilePic from './pics/profile.jpg';
+import NotebookSide from './pics/spiral.png';
 
 class New extends Component {
   constructor(props){
@@ -74,14 +75,20 @@ class New extends Component {
     return (
       <div className="New">
         <div className="wrapper">
-          <header>DocuMe</header>
+          <header><div className="header">DocuMe</div></header>
           <aside>
             <img src={ProfilePic} alt={ProfilePic} className="profile"></img>
-            <Link to="/personal"><div className="side">Personal</div></Link>
-            <Link to="/"><div className="side">Home</div></Link>
-            <Link to="/groups"><div className="side">Groupings</div></Link>
-            <Link to="/new"><div className="side">&#9733; Create New</div></Link>
+            <div className="links">
+              <Link to="/personal"><div className="side">Personal</div></Link>
+              <Link to="/"><div className="side">Home</div></Link>
+              <Link to="/groups"><div className="side">Groupings</div></Link>
+              <Link to="/new"><div className="side">&#9733; Create New</div></Link>
+            </div>
           </aside>
+          <figure>
+            <img src={NotebookSide} alt={NotebookSide} className="spiral" />
+            <img src={NotebookSide} alt={NotebookSide} className="spiral" />
+          </figure>
           <main>
             <Link to="/">
               <div className={seeNew}>Check out new Entry!</div>

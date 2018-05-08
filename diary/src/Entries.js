@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import './Entries.css';
 import ProfilePic from './pics/profile.jpg';
+import NotebookSide from './pics/spiral.png';
 
 class Entries extends Component {
   constructor(props){
@@ -34,14 +35,20 @@ class Entries extends Component {
     return (
       <div className="Entries">
         <div className="wrapper">
-          <header>DocuMe</header>
+          <header><div className="header">DocuMe</div></header>
           <aside>
             <img src={ProfilePic} alt={ProfilePic} className="profile"></img>
-            <Link to="/personal"><div className="side">Personal</div></Link>
-            <Link to="/"><div className="side">Home</div></Link>
-            <Link to="/groups"><div className="side">Groupings</div></Link>
-            <Link to="/new"><div className="side">Create New</div></Link>
+            <div className="links">
+              <Link to="/personal"><div className="side">Personal</div></Link>
+              <Link to="/"><div className="side">Home</div></Link>
+              <Link to="/groups"><div className="side">Groupings</div></Link>
+              <Link to="/new"><div className="side">Create New</div></Link>
+            </div>
           </aside>
+          <figure>
+            <img src={NotebookSide} alt={NotebookSide} className="spiral" />
+            <img src={NotebookSide} alt={NotebookSide} className="spiral" />
+          </figure>
           <main>
             <div className="info">
               <div>{this.props.entry.date}</div>

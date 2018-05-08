@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import './Personal.css';
 import ProfilePic from './pics/profile.jpg';
+import NotebookSide from './pics/spiral.png';
 
 class Personal extends Component {
   constructor(props){
@@ -68,14 +69,20 @@ class Personal extends Component {
     return (
       <div className="Personal">
         <div className="wrapper">
-          <header>DocuMe</header>
+          <header><div className="header">DocuMe</div></header>
           <aside>
             <img src={ProfilePic} alt={ProfilePic} className="profile"></img>
-            <Link to="/personal"><div className="side">&#9733; Personal</div></Link>
-            <Link to="/"><div className="side">Home</div></Link>
-            <Link to="/groups"><div className="side">Groupings</div></Link>
-            <Link to="/new"><div className="side">Create New</div></Link>
+            <div className="links">
+              <Link to="/personal"><div className="side">&#9733; Personal</div></Link>
+              <Link to="/"><div className="side">Home</div></Link>
+              <Link to="/groups"><div className="side">Groupings</div></Link>
+              <Link to="/new"><div className="side">Create New</div></Link>
+            </div>
           </aside>
+          <figure>
+            <img src={NotebookSide} alt={NotebookSide} className="spiral" />
+            <img src={NotebookSide} alt={NotebookSide} className="spiral" />
+          </figure>
           <main>
             <div className="bar">
               <div>My favorite</div>

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './GroupBox.css';
 
 class GroupBox extends Component {
   constructor(props){
