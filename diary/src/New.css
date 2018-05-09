@@ -5,14 +5,25 @@
 .choose{
   display: flex;
   flex-direction: row;
+  width: 60%;
+  margin-bottom: 20px;
 }
 
 .chooseDate{
   flex: 1;
+  background-color: #ececec;
+  border: none;
+  font-size: 20px;
+  outline: none;
 }
 
 .group{
-  flex: 2;
+  flex: 1;
+  background-color: #ececec;
+  border: none;
+  font-size: 20px;
+  font-family: monospace;
+  outline: none;
 }
 
 select:required:invalid {

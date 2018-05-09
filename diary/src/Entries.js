@@ -55,7 +55,7 @@ class Entries extends Component {
               <div>Group: {this.props.entry.group}</div>
             </div>
             <div className="diaryBox">
-              <div className="titleBox">{this.props.entry.title}</div>
+              <div className="entryTitle">{this.props.entry.title}</div>
               <div className="content" dangerouslySetInnerHTML={{ __html: this.props.entry.html }} />
             </div>
             <div className="followUp">

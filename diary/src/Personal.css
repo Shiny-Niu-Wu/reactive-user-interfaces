@@ -26,6 +26,10 @@
   text-align: center;
 }
 
+.noOutline{
+  outline: none;
+}
+
 .button{
   background-color: #ececec;
   border: none;

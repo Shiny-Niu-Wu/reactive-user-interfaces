@@ -93,10 +93,12 @@ main{
 .date{
   margin-right: 20px;
   flex: 2;
+  outline: none;
 }
 
 .search{
   flex: 1;
+  outline: none;
 }
 
 .entries{

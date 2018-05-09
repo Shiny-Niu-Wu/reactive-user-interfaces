@@ -86,9 +86,9 @@ class Personal extends Component {
           <main>
             <div className="bar">
               <div>My favorite</div>
-              <input placeholder="person" value={this.state.category} onChange={this.changeCategory}></input>
+              <input className="noOutline" placeholder="person" value={this.state.category} onChange={this.changeCategory}></input>
               <div>is</div>
-              <input placeholder="Jerry" value={this.state.thing} onChange={this.changeThing}></input>
+              <input className="noOutline" placeholder="Jerry" value={this.state.thing} onChange={this.changeThing}></input>
               <button onClick={this.newFavorite} className="button">Add</button>
             </div>
             <div className="favorites">{favorites}</div>

@@ -26,7 +26,7 @@ class Group extends Component {
           <main>
             <h1>{this.props.entryGroup}</h1>
             <div>{this.props.entries}</div>
-            <Link to="/new"><button>Create New</button></Link>
+            <Link to="/new"><button className="submitButton">Create New Post</button></Link>
           </main>
         </div>
       </div>
