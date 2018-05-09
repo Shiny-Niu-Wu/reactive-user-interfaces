@@ -58,11 +58,11 @@ class Entries extends Component {
               <div className="entryTitle">{this.props.entry.title}</div>
               <div className="content" dangerouslySetInnerHTML={{ __html: this.props.entry.html }} />
             </div>
+            <p>Comments</p>
             <div className="followUp">
               <textarea placeholder="More to say..." className="comment" value={this.state.comment} onChange={this.changeComment}></textarea>
-              <button className="addComment" onClick={this.addComment}>Add</button>
+              <button className="submitButton addComment" onClick={this.addComment}>Add</button>
             </div>
-            <p>Comments</p>
             <div className="allComments">{comments}</div>
           </main>
         </div>

@@ -204,7 +204,7 @@ class App extends Component {
             const allGroups = groupsCopy.map((group, i) => {
               return(
                 <Link to={"/group/" + group.id} key={'group' + group.id}>
-                  <div className="boxes">
+                  <div className="groupBox">
                     <GroupBox
                       group={group.groupName}
                       clickGroup={this.clickGroup}

@@ -5,7 +5,7 @@
 .choose{
   display: flex;
   flex-direction: row;
-  width: 60%;
+  width: auto;
   margin-bottom: 20px;
 }
 
@@ -109,6 +109,6 @@ option {
   padding: 5px;
   border: none;
   outline: none;
-  margin-top: 20px;
+  margin-top: 5px;
   font-family: monospace;
 }

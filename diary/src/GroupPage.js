@@ -59,7 +59,7 @@ class GroupPage extends Component {
               <button onClick={this.newGroup} className="button">Create</button>
               <input className="noOutline" placeholder="Search" onChange={this.searchGroup}></input>
             </div>
-            <div>{this.props.groups}</div>
+            <div className="entries">{this.props.groups}</div>
           </main>
         </div>
       </div>
