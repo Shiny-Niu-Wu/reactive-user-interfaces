@@ -56,7 +56,7 @@ class GroupPage extends Component {
             <div className="bar">
               <div>Create New Group</div>
               <input placeholder="group name" value={this.state.groupName} onChange={this.changeGroupName}></input>
-              <button onClick={this.newGroup}>Create</button>
+              <button onClick={this.newGroup} className="button">Create</button>
               <input placeholder="Search" onChange={this.searchGroup}></input>
             </div>
             <div>{this.props.groups}</div>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import './Group.css';
 import ProfilePic from './pics/profile.jpg';
 import NotebookSide from './pics/spiral.png';
 

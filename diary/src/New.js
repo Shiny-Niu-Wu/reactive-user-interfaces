@@ -96,7 +96,7 @@ class New extends Component {
             <h1 className="h1Entry">New Entry</h1>
             <div className="diaryBox">
               <div className="choose">
-                <input className="date" type="date" value={this.state.date} onChange={this.changeDate} />
+                <input className="chooseDate" type="date" value={this.state.date} onChange={this.changeDate} />
                 <select className="group" value={this.state.group} onChange={this.selectGroup}>
                   <option value="" disabled selected>Select a group</option>
                   {this.props.groupOption}
@@ -104,19 +104,16 @@ class New extends Component {
               </div>
               <textarea className="titleBox" placeholder="Title Here" value={this.state.title} onChange={this.changeTitle}></textarea>
               <Editor
-                toolbarOnFocus
                 wrapperClassName="wrapper-class"
                 editorClassName="editor-class"
-                toolbarClassName="toolbar-class"
                 editorState={editorState}
                 onEditorStateChange={this.onChange}
                 placeholder="I know you want to type something..."
               />
             </div>
             <div className="submit">
-              <button onClick={this.submitEntry}>Submit</button>
+              <button onClick={this.submitEntry} className="submitButton">Submit</button>
             </div>
-            <div dangerouslySetInnerHTML={{ __html: this.state.html }} className="transferHTML" />
           </main>
         </div>
       </div>

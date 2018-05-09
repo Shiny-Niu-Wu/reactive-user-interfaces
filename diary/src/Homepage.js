@@ -42,7 +42,7 @@ class Homepage extends Component {
           </figure>
           <main>
             <div className="filterBar">
-              <div className="filterBy">Filter By Date: </div>
+              <div className="filterBy">Filter By Date</div>
               <input className="date" type="date" onChange={this.changeDate} />
               <input className="search" placeholder="Search" onChange={this.search}></input>
             </div>

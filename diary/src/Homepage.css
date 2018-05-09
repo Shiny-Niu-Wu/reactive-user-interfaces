@@ -84,7 +84,19 @@ main{
   color: white;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+}
+
+.filterBy{
+  flex: 1;
+}
+
+.date{
+  margin-right: 20px;
+  flex: 2;
+}
+
+.search{
+  flex: 1;
 }
 
 .entries{

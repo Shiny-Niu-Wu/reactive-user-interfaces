@@ -7,12 +7,12 @@
   flex-direction: row;
 }
 
-.date{
+.chooseDate{
   flex: 1;
 }
 
 .group{
-  flex: auto;
+  flex: 2;
 }
 
 select:required:invalid {
@@ -72,6 +72,7 @@ option {
 
 .newEntry{
   display: none;
+  font-family: monospace;
 }
 
 .showNew{
@@ -83,12 +84,20 @@ option {
 .h1Entry{
   margin: 0;
   margin-bottom: 20px;
+  font-family: monospace;
 }
 
 .submit{
   text-align: center;
 }
 
-.transferHTML{
-  opacity: 0;
+.submitButton{
+  background-color: black;
+  font-size: 20px;
+  color: white;
+  padding: 5px;
+  border: none;
+  outline: none;
+  margin-top: 20px;
+  font-family: monospace;
 }

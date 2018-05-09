@@ -89,7 +89,7 @@ class Personal extends Component {
               <input placeholder="person" value={this.state.category} onChange={this.changeCategory}></input>
               <div>is</div>
               <input placeholder="Jerry" value={this.state.thing} onChange={this.changeThing}></input>
-              <button onClick={this.newFavorite}>Add</button>
+              <button onClick={this.newFavorite} className="button">Add</button>
             </div>
             <div className="favorites">{favorites}</div>
           </main>
